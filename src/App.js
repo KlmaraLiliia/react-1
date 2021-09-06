@@ -1,22 +1,56 @@
-import logo from './logo.svg';
+
 import './App.css';
-import CharacterComponent from "./components/characterComponent";
+import Animal from "./component/animal/Animal";
+import {useState} from 'react';
+
+
+let animalsList=[
+        { name: 'Vasya', type: 'Cat', age: 4},
+        { name: 'Murka', type: 'Cat', age: 1.5 },
+        { name: 'Varna', type: 'Turtle', age: 21 },
+        { name: 'Kesha', type: 'Parrot', age: 3 },
+        { name: 'Nayda', type: 'Dog', age: 2.5 },
+        { name: 'Pufic', type: 'Humster', age: 2.5 },
+        { name: 'Randy', type: 'dog', age: 12 },
+    ];
 
 function App() {
+
+let [counter, setCounter]=useState(0);
+const increment =()=>setCounter(++counter);
+
+const decrement =()=>setCounter(--counter);
+
+const reset =()=>setCounter(0);
+
+
+
+let [animals, setAnimals]=useState(animalsList);
+
+const deleteAnimal=()=>{
+    animals.pop();
+    setAnimals([...animals]);
+    console.log('jhbh');
+}
+
   return (
    <div>
-     <CharacterComponent
-         name={'Imagine Dragons'}
-         image={'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQVMX1QUN6yZ4YTXbKAOg45cN1jBuPREOnRHwYnZYbT9onUlg6oxrCCSW8TXwvkEea9z5Y&usqp=CAU'}
-         age={'234'}/>
-       <CharacterComponent
-           name={'Dan Reynolds'}
-           image={'https://endlesstrax.com/content/images/2020/04/dan-reynolds.jpg'}
-           age={'236'}/>
-       <CharacterComponent
-           name={'Wayne Sermon'}
-           image={'https://upload.wikimedia.org/wikipedia/commons/thumb/7/7e/Positivus_2013_Imagine_Dragons_%289823061336%29.jpg/1200px-Positivus_2013_Imagine_Dragons_%289823061336%29.jpg'}
-           age={'237'}/>
+       <div>
+         counter is -${counter}
+         <button onClick={increment}>Increment</button>
+         <button onClick={decrement}>Decrement</button>
+         <button onClick={reset}>Reset</button> 
+       </div>
+       
+       <div>
+       {
+           animals.map((value,index) =>
+               <Animal key={index}
+                       {...value}
+               />)
+       }
+       <button onClick={deleteAnimal}>delete animal</button>
+       </div>
 
    </div>
   );
