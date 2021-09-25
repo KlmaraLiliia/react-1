@@ -1,9 +1,9 @@
 
 import './App.css';
-import Animal from "./component/animal/Animal";
 import {useState} from 'react';
+import Users1 from "./component/users/Users1";
 
-
+/*
 let animalsList=[
         { name: 'Vasya', type: 'Cat', age: 4},
         { name: 'Murka', type: 'Cat', age: 1.5 },
@@ -13,7 +13,7 @@ let animalsList=[
         { name: 'Pufic', type: 'Humster', age: 2.5 },
         { name: 'Randy', type: 'dog', age: 12 },
     ];
-
+*/
 function App() {
 
 let [counter, setCounter]=useState(0);
@@ -24,15 +24,6 @@ const decrement =()=>setCounter(--counter);
 const reset =()=>setCounter(0);
 
 
-
-let [animals, setAnimals]=useState(animalsList);
-
-const deleteAnimal=()=>{
-    animals.pop();
-    setAnimals([...animals]);
-    console.log('jhbh');
-}
-
   return (
    <div>
        <div>
@@ -41,15 +32,8 @@ const deleteAnimal=()=>{
          <button onClick={decrement}>Decrement</button>
          <button onClick={reset}>Reset</button> 
        </div>
-       
        <div>
-       {
-           animals.map((value,index) =>
-               <Animal key={index}
-                       {...value}
-               />)
-       }
-       <button onClick={deleteAnimal}>delete animal</button>
+           <Users1/>
        </div>
 
    </div>
